@@ -1,6 +1,28 @@
 import streamlit as st
 import numpy as np
 import pickle
+import os
+
+st.set_page_config(
+    page_title="Multi Disease Prediction System",
+    page_icon="🧠",
+    layout="centered"
+)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIR = os.path.join(BASE_DIR, "models")
+
+@st.cache_resource
+def load_model(filename):
+    model_path = os.path.join(MODEL_DIR, filename)
+    return pickle.load(open(model_path, "rb"))
+
+heart_model = load_model("heart_model.pkl")
+diabetes_model = load_model("diabetes_model.pkl")
+kidney_model = load_model("kidney_model.pkl")
+import streamlit as st
+import numpy as np
+import pickle
 
 # ----------------- PAGE CONFIG -----------------
 st.set_page_config(
