@@ -16,7 +16,7 @@ st.write("Predict if a person is diabetic using Machine Learning")
 # ---------------- PATH SETUP ----------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR = os.path.join(BASE_DIR, "models")
-MODEL_FILE = os.path.join(MODEL_DIR, "diabetes_model.pkl")
+MODEL_FILE = os.path.join(MODEL_DIR, "diabetes_model(2).pkl")
 
 # ---------------- LOAD MODEL ----------------
 @st.cache_resource
