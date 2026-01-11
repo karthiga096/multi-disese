@@ -16,17 +16,25 @@ st.write("Predict if a person is diabetic using Machine Learning")
 # ---------------- PATH SETUP ----------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR = os.path.join(BASE_DIR, "models")
-MODEL_FILE = os.path.join(MODEL_DIR, "diabetes_model(2).pkl")
+MODEL_FILE = os.path.join(MODEL_DIR, "diabetes_model.pkl")
+
+# ---------------- DEBUG INFO ----------------
+st.write("BASE_DIR:", BASE_DIR)
+st.write("MODEL_DIR exists:", os.path.exists(MODEL_DIR))
+if os.path.exists(MODEL_DIR):
+    st.write("Files in models folder:", os.listdir(MODEL_DIR))
+else:
+    st.error("❌ models folder not found")
+    st.stop()
 
 # ---------------- LOAD MODEL ----------------
 @st.cache_resource
 def load_model(path):
-    with open(path, "rb") as f:
-        return pickle.load(f)
+    st.write("Loading model from:", path)
+    return pickle.load(open(path, "rb"))
 
-# Check if model exists
 if not os.path.exists(MODEL_FILE):
-    st.error("❌ diabetes_model.pkl not found in models folder!")
+    st.error(f"❌ {MODEL_FILE} not found!")
     st.stop()
 
 diabetes_model = load_model(MODEL_FILE)
